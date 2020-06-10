@@ -2,9 +2,6 @@ var heater = require('../js/heaterHandler')
 var db = require('../js/databaseHandler')
 var schedule = require('node-schedule')
 
-// interval timer
-// var j = schedule.scheduleJob('0-59 9-20 * * *', function(){
-
 var readTemperatureEveryFifteenMinutes = function(){
 
 	schedule.scheduleJob('*/15 9-20 * * *', function(){
@@ -19,7 +16,7 @@ var readTemperatureEveryFifteenMinutes = function(){
 							if (status[0].status == 'off'){
 								heater.turnOn()
 								db.logHeaterToggle('on',function(err, results){
-									(results) ? console.log('logged: heater off') : console.log(err)
+									(results) ? console.log('logged: heater on') : console.log(err)
 								})
 							} else if (status[0].status == 'on'){
 								console.log('Room is cold, but heater is already on. No action required.')
