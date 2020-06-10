@@ -7,7 +7,7 @@ var schedule = require('node-schedule')
 
 var readTemperatureEveryFifteenMinutes = function(){
 
-	schedule.scheduleJob('* 9-20 * * *', function(){
+	schedule.scheduleJob('*/15 9-20 * * *', function(){
 
 		db.readLatestTemperature(function(err, temp){
 			
