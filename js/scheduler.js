@@ -19,9 +19,7 @@ var readTemperatureEveryFifteenMinutes = function(){
 							if (status[0].status == 'off'){
 								heater.turnOn()
 								db.logHeaterToggle('on',function(err, results){
-									(results) ? res.send({
-										'status':true
-									}) : res.send({'error':err}) 
+									(results) ? console.log('logged: heater off') : console.log(err)
 								})
 							} else if (status[0].status == 'on'){
 								console.log('Room is cold, but heater is already on. No action required.')
@@ -31,9 +29,7 @@ var readTemperatureEveryFifteenMinutes = function(){
 								console.log('Room is warm and heater is not needed. Turning heater off')
 								heater.turnOff()
 								db.logHeaterToggle('off',function(err, results){
-									(results) ? res.send({
-										'status':true
-									}) : res.send({'error':err}) 
+									(results) ? console.log('logged: heater off') : console.log(err)
 								})
 							} else if (status[0].status == 'on'){
 								console.log('Room is cold, but heater is already on. No action required.')
