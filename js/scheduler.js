@@ -12,7 +12,7 @@ var readTemperatureEveryFifteenMinutes = function(){
 
 				db.readLatestHeaterStatus(function(err, status){
 					if (status) {
-						if (temp[0].value < 18){
+						if (temp[0].value < 16){
 							if (status[0].status == 'off'){
 								heater.turnOn()
 								db.logHeaterToggle('on',function(err, results){
@@ -21,7 +21,7 @@ var readTemperatureEveryFifteenMinutes = function(){
 							} else if (status[0].status == 'on'){
 								console.log('Room is cold, but heater is already on. No action required.')
 							}
-						} else if (temp[0].value > 20){
+						} else if (temp[0].value > 18){
 							if (status[0].status == 'on'){
 								console.log('Room is warm and heater is not needed. Turning heater off')
 								heater.turnOff()
